@@ -1,0 +1,40 @@
+CREATE DATABASE Alpha_Tech;
+USE Alpha_Tech
+CREATE TABLE sensores (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(50),
+localizacao VARCHAR(100),
+status VARCHAR(20)
+);
+
+CREATE TABLE leituras (
+id INT AUTO_INCREMENT PRIMARY KEY,
+id_sensor INT REFERENCES sensores (id_sensor),
+temperatura DECIMAL(5,2),
+umidade INT,
+rotacao INT,
+estado VARCHAR(20),
+data_hora DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE eventos (
+id INT AUTO_INCREMENT PRIMARY KEY,
+descricao TEXT,
+nivel VARCHAR(20),
+data_hora DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE alertas (
+id INT AUTO_INCREMENT PRIMARY KEY,
+id_sensor INT REFERENCES sensores(id_sensor),
+mensagem TEXT,
+status VARCHAR(20),
+data_hora DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE logs (
+id INT AUTO_INCREMENT PRIMARY KEY,
+origem VARCHAR(50),
+mensagem TEXT,
+data_hora DATETIME DEFAULT CURRENT_TIMESTAMP
+);
