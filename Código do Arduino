@@ -10,3 +10,29 @@ void loop() {
   delay(1000);
 }
 =====================================================================================
+
+
+
+import mysql.connector
+
+conexao = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="root",
+    database="Alpha_Tech"
+)
+
+cursor = conexao.cursor()
+
+sql = """
+INSERT INTO sensores (nome, localizacao, status)
+VALUES (%s, %s, %s)
+"""
+
+valores = ("DHT212", "Sala 1", "Ativo")
+
+cursor.execute(sql, valores)
+
+conexao.commit()
+
+print("Sensor cadastro")
